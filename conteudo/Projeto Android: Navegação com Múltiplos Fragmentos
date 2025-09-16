@@ -1,0 +1,55 @@
+# Projeto Android: Navegação com Múltiplos Fragmentos
+
+![Status](https://img.shields.io/badge/status-concluído-green)
+
+Este projeto é um exemplo fundamental de como construir uma aplicação Android moderna utilizando uma arquitetura de *Single Activity* (Atividade Única) com múltiplos *Fragments*. O objetivo é demonstrar a maneira correta de gerenciar e navegar entre diferentes "telas" (fragmentos) dentro de uma única atividade principal, utilizando botões como controladores.
+
+## 🚀 Funcionalidades Demonstradas
+
+* **Arquitetura de Atividade Única:** Centraliza a lógica de navegação em uma `MainActivity`.
+* **Gerenciamento de Fragmentos:** Utiliza o `FragmentManager` e transações (`replace`) para exibir e trocar os fragmentos dinamicamente.
+* **View Binding:** Acessa componentes de UI (Views) de forma segura e eficiente, eliminando a necessidade de `findViewById`.
+* **Layouts em XML:** Construção de interfaces de usuário com `ConstraintLayout` e `LinearLayout`.
+* **Comunicação Básica:** A Atividade controla qual fragmento deve ser exibido com base na interação do usuário (clique em botões).
+
+## 🛠️ Tecnologias Utilizadas
+
+* [Kotlin](https://kotlinlang.org/)
+* [Android SDK](https://developer.android.com/studio)
+* Android View System (Layouts XML)
+* View Binding
+* Gradle
+
+## ⚙️ Como Executar o Projeto
+
+Para rodar este projeto em sua máquina local, siga os passos abaixo.
+
+### Pré-requisitos
+
+* [Android Studio](https://developer.android.com/studio) (versão Hedgehog ou mais recente recomendada).
+
+### Passos para Instalação
+
+1.  **Baixar o Projeto**
+    * Navegue até a área **"conteudo"** deste repositório no GitHub.
+    * Baixe o arquivo **`programacao.zip`**.
+
+2.  **Descompactar o Arquivo**
+    * Extraia o conteúdo do arquivo `programacao.zip` em uma pasta de sua preferência no seu computador.
+
+3.  **Abrir no Android Studio**
+    * Abra o Android Studio.
+    * Vá em **File** -> **Open...**.
+    * Navegue até a pasta que você acabou de descompactar e selecione-a.
+    * O Android Studio irá carregar o projeto.
+
+4.  **Sincronizar e Executar**
+    * Aguarde o Gradle sincronizar o projeto (uma barra de progresso aparecerá na parte inferior).
+    * Após a sincronização, clique no botão **Run 'app'** (ícone de triângulo verde ▶️) para instalar e executar o aplicativo em um emulador ou dispositivo físico.
+
+## 📸 Preview do App
+
+O aplicativo consiste em uma única tela. Na parte superior, há três botões ("Frag 1", "Frag 2", "Frag 3"). Abaixo dos botões, uma área de conteúdo exibe um dos três fragmentos. Cada fragmento tem uma cor de fundo e um texto distintos para identificação. Clicar em um botão na parte superior troca o fragmento exibido na área de conteúdo.
+
+---
+*Este README foi gerado em 16 de setembro de 2025.*
