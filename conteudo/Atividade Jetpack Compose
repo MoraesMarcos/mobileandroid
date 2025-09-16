@@ -1,0 +1,386 @@
+Atividade Jetpack Compose
+É uma aplicação Android desenvolvida em Kotlin com Jetpack Compose, que serve como um portfólio de demonstração para quatro exercícios práticos, cada um focado em um conceito fundamental do desenvolvimento de UI moderno no Android.
+
+Estrutura do Projeto
+A aplicação utiliza uma arquitetura de atividade única (Single-Activity). A MainActivity funciona como um controlador de navegação simples, gerenciando qual tela (Composable) é exibida com base em um estado (remember { mutableStateOf("Menu") }).
+
+A navegação é centralizada em um bloco when, que renderiza a função Composable correspondente à tela selecionada no menu principal.
+
+Exercícios Implementados
+O menu principal dá acesso às seguintes telas, cada uma demonstrando um conceito específico:
+
+1. Layout Responsivo (ResponsiveScreen)
+Esta tela demonstra como criar uma interface de usuário que se adapta a diferentes tamanhos de tela usando ConstraintLayout em Jetpack Compose.
+
+Conceitos aplicados:
+
+Uso de ConstraintLayout para posicionar elementos de forma relativa.
+
+Vínculos (links) entre componentes (ex: top.linkTo(parent.top)).
+
+Dimensionamento dinâmico com Dimension.fillToConstraints, permitindo que os componentes preencham o espaço disponível.
+
+Distribuição de espaço horizontal entre dois botões.
+
+2. Lista com Clique (ProductListScreen)
+Esta tela exibe uma lista de produtos de forma otimizada e interativa, mostrando um Toast com o preço ao clicar em um item.
+
+Conceitos aplicados:
+
+LazyColumn: Utilizado para criar listas verticais roláveis com eficiência, reciclando e compondo apenas os itens visíveis na tela.
+
+Manipulação de Eventos: Adição de um Modifier.clickable a cada item da lista para responder ao toque do usuário.
+
+Formatação de Dados: Uso de NumberFormat.getCurrencyInstance para formatar valores Double como moeda local (R$).
+
+Exibição de Toast: Demonstra como interagir com o contexto do Android para mostrar mensagens rápidas.
+
+3. Formulário Simples (SimpleFormScreen)
+Esta tela implementa um formulário de cadastro com campos para nome, e-mail e idade, incluindo validação de dados em tempo real.
+
+Conceitos aplicados:
+
+Gerenciamento de Estado: Uso de remember { mutableStateOf(...) } para armazenar o valor dos campos de texto e seus respectivos erros.
+
+Componentes de UI: Utilização de OutlinedTextField para entrada de dados.
+
+Validação de Entrada:
+
+Verifica se o nome não está vazio.
+
+Valida o formato do e-mail usando Patterns.EMAIL_ADDRESS.
+
+Garante que a idade seja um número e maior ou igual a 18.
+
+Feedback ao Usuário: Exibição de mensagens de erro dinâmicas abaixo dos campos inválidos e um Toast de sucesso ao enviar o formulário válido.
+
+KeyboardOptions: Configuração do tipo de teclado apropriado para cada campo (e-mail, número).
+
+4. Acessibilidade (AccessibilityScreen)
+Esta tela demonstra a implementação de boas práticas de acessibilidade para garantir que o aplicativo seja utilizável por um público mais amplo, incluindo pessoas com deficiência.
+
+Conceitos aplicados:
+
+contentDescription: Fornecimento de uma descrição textual para componentes visuais não textuais (como um Icon), permitindo que leitores de tela (ex: TalkBack) os descrevam.
+
+Área de Toque Mínima: Utilização de Modifier.sizeIn(minWidth = 48.dp, minHeight = 48.dp) para garantir que botões e ícones tenham um tamanho de toque adequado, facilitando a interação.
+
+Contraste de Cores: Exemplo de uso de cores do tema (MaterialTheme.colorScheme.onSurface) para garantir um bom contraste entre o texto e o fundo.
+
+Código Fonte
+Abaixo está o código completo da MainActivity.kt que implementa todas as funcionalidades descritas.
+
+Kotlin
+
+package com.example.exercicios_04
+
+import android.os.Bundle
+import android.util.Patterns
+import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
+import com.example.exercicios_04.ui.theme.Exercicios_04Theme
+import java.text.NumberFormat
+import java.util.Locale
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Exercicios_04Theme {
+                var currentScreen by remember { mutableStateOf("Menu") }
+
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    when (currentScreen) {
+                        "Menu" -> MenuScreen(onNavigate = { screen -> currentScreen = screen })
+                        "Responsive" -> ResponsiveScreen(onBack = { currentScreen = "Menu" })
+                        "List" -> ProductListScreen(onBack = { currentScreen = "Menu" })
+                        "Form" -> SimpleFormScreen(onBack = { currentScreen = "Menu" })
+                        "Accessibility" -> AccessibilityScreen(onBack = { currentScreen = "Menu" })
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun MenuScreen(onNavigate: (String) -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text("Exercícios Práticos", style = MaterialTheme.typography.headlineSmall)
+        Spacer(Modifier.height(32.dp))
+        Button(onClick = { onNavigate("Responsive") }) { Text("1. Layout Responsivo") }
+        Spacer(Modifier.height(16.dp))
+        Button(onClick = { onNavigate("List") }) { Text("2. Lista com Clique") }
+        Spacer(Modifier.height(16.dp))
+        Button(onClick = { onNavigate("Form") }) { Text("3. Formulário Simples") }
+        Spacer(Modifier.height(16.dp))
+        Button(onClick = { onNavigate("Accessibility") }) { Text("4. Acessibilidade") }
+    }
+}
+
+// --- TELA 1: ConstraintLayout Responsivo ---
+@Composable
+fun ResponsiveScreen(onBack: () -> Unit) {
+    ConstraintLayout(modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
+        val (title, image, button1, button2, backButton) = createRefs()
+
+        Text(
+            text = "Título no Topo Centro",
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier.constrainAs(title) {
+                top.linkTo(parent.top, margin = 16.dp)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+            }
+        )
+
+        Image(
+            painter = painterResource(id = R.drawable.ic_launcher_background), // Garanta que esta imagem exista em res/drawable
+            contentDescription = "Imagem de exemplo",
+            modifier = Modifier
+                .constrainAs(image) {
+                    top.linkTo(title.bottom, margin = 16.dp)
+                    bottom.linkTo(button1.top, margin = 16.dp)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    width = Dimension.fillToConstraints
+                    height = Dimension.fillToConstraints // Ocupa todo o espaço vertical disponível
+                }
+                .padding(16.dp),
+            contentScale = ContentScale.Fit
+        )
+
+        Button(
+            onClick = { /* Ação 1 */ },
+            modifier = Modifier.constrainAs(button1) {
+                bottom.linkTo(backButton.top, margin = 8.dp)
+                start.linkTo(parent.start, margin = 16.dp)
+                end.linkTo(button2.start, margin = 8.dp)
+                width = Dimension.fillToConstraints // Ocupa metade do espaço
+            }
+        ) {
+            Text("Botão 1")
+        }
+
+        Button(
+            onClick = { /* Ação 2 */ },
+            modifier = Modifier.constrainAs(button2) {
+                bottom.linkTo(button1.bottom) // Alinhado com o botão 1
+                start.linkTo(button1.end, margin = 8.dp)
+                end.linkTo(parent.end, margin = 16.dp)
+                width = Dimension.fillToConstraints // Ocupa a outra metade
+            }
+        ) {
+            Text("Botão 2")
+        }
+
+        Button(onClick = onBack, modifier = Modifier.constrainAs(backButton) {
+            bottom.linkTo(parent.bottom, margin = 16.dp)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+        }) { Text("Voltar ao Menu") }
+    }
+}
+
+// --- TELA 2: Lista com Clique (LazyColumn) ---
+data class Product(val name: String, val price: Double)
+
+@Composable
+fun ProductListScreen(onBack: () -> Unit) {
+    val products = remember {
+        listOf(
+            Product("Notebook Gamer", 7599.90),
+            Product("Mouse Vertical Ergonômico", 250.50),
+            Product("Teclado Mecânico RGB", 499.00),
+            Product("Monitor UltraWide 4K", 2890.75),
+            Product("SSD NVMe 2TB", 950.00)
+        )
+    }
+    val context = LocalContext.current
+    val currencyFormat = remember { NumberFormat.getCurrencyInstance(Locale("pt", "BR")) }
+
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
+        Text("Lista de Produtos", style = MaterialTheme.typography.headlineSmall, modifier = Modifier.padding(bottom = 16.dp))
+        // LazyColumn é o equivalente do RecyclerView, otimizado para listas longas
+        LazyColumn(modifier = Modifier.weight(1f)) {
+            items(products) { product ->
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { // Adiciona o evento de clique a toda a linha
+                            val formattedPrice = currencyFormat.format(product.price)
+                            Toast
+                                .makeText(context, "Preço: $formattedPrice", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                ) {
+                    Row(modifier = Modifier.padding(vertical = 16.dp)) {
+                        Text(product.name, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                        Text(currencyFormat.format(product.price))
+                    }
+                    Divider() // Linha separadora
+                }
+            }
+        }
+        Button(onClick = onBack, modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 8.dp)) { Text("Voltar ao Menu") }
+    }
+}
+
+// --- TELA 3: Formulário Simples ---
+@Composable
+fun SimpleFormScreen(onBack: () -> Unit) {
+    var name by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var age by remember { mutableStateOf("") }
+    var nameError by remember { mutableStateOf<String?>(null) }
+    var emailError by remember { mutableStateOf<String?>(null) }
+    var ageError by remember { mutableStateOf<String?>(null) }
+    val context = LocalContext.current
+
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
+        Text("Formulário Simples", style = MaterialTheme.typography.headlineSmall, modifier = Modifier.padding(bottom = 16.dp))
+
+        OutlinedTextField(
+            value = name,
+            onValueChange = { name = it; nameError = null },
+            label = { Text("Nome Completo") },
+            modifier = Modifier.fillMaxWidth(),
+            isError = nameError != null,
+            singleLine = true
+        )
+        // Mostra a mensagem de erro abaixo do campo, se houver
+        nameError?.let { Text(it, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall) }
+        Spacer(Modifier.height(8.dp))
+
+        OutlinedTextField(
+            value = email,
+            onValueChange = { email = it; emailError = null },
+            label = { Text("E-mail") },
+            modifier = Modifier.fillMaxWidth(),
+            isError = emailError != null,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+            singleLine = true
+        )
+        emailError?.let { Text(it, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall) }
+        Spacer(Modifier.height(8.dp))
+
+        OutlinedTextField(
+            value = age,
+            onValueChange = { age = it; ageError = null },
+            label = { Text("Idade") },
+            modifier = Modifier.fillMaxWidth(),
+            isError = ageError != null,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            singleLine = true
+        )
+        ageError?.let { Text(it, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall) }
+
+        Spacer(Modifier.weight(1f)) // Empurra os botões para baixo
+
+        Button(
+            onClick = {
+                var isValid = true
+                if (name.trim().isEmpty()) {
+                    nameError = "Nome não pode ser vazio"; isValid = false
+                }
+                if (!Patterns.EMAIL_ADDRESS.matcher(email.trim()).matches()) {
+                    emailError = "Formato de e-mail inválido"; isValid = false
+                }
+                val ageInt = age.trim().toIntOrNull()
+                if (ageInt == null || ageInt < 18) {
+                    ageError = "A idade deve ser 18 ou maior"; isValid = false
+                }
+                if (isValid) {
+                    Toast.makeText(context, "Formulário Válido e Enviado!", Toast.LENGTH_SHORT).show()
+                }
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) { Text("Enviar") }
+
+        Button(onClick = onBack, modifier = Modifier.fillMaxWidth()) { Text("Voltar ao Menu") }
+    }
+}
+
+// --- TELA 4: Acessibilidade ---
+@Composable
+fun AccessibilityScreen(onBack: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text("Exemplo de Acessibilidade", style = MaterialTheme.typography.headlineSmall, modifier = Modifier.padding(bottom = 32.dp))
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(16.dp)
+        ) {
+            IconButton(
+                onClick = { /* ação do ícone */ },
+                modifier = Modifier.sizeIn(minWidth = 48.dp, minHeight = 48.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Info,
+                    contentDescription = "Ícone de informação",
+                )
+            }
+
+            Spacer(Modifier.width(16.dp))
+
+            Text(
+                text = "Texto com bom contraste",
+                color = MaterialTheme.colorScheme.onSurface,
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
+
+        Spacer(Modifier.weight(1f))
+        Button(onClick = onBack, modifier = Modifier.fillMaxWidth()) { Text("Voltar ao Menu") }
+    }
+}
+
+// --- Preview para o Android Studio ---
+@Preview(showBackground = true, widthDp = 360, heightDp = 640)
+@Composable
+fun DefaultPreview() {
+    Exercicios_04Theme {
+        MenuScreen(onNavigate = {})
+    }
+}
