@@ -1,0 +1,19 @@
+<resources>
+    <!-- Paleta base (ajuste como preferir) -->
+    <color name="md_seed">#3F51B5</color>
+    <color name="md_primary">#3F51B5</color>
+    <color name="md_onPrimary">#FFFFFF</color>
+    <color name="md_primaryContainer">#DDE1FF</color>
+    <color name="md_onPrimaryContainer">#0C1A5B</color>
+
+    <color name="md_secondary">#03DAC5</color>
+    <color name="md_onSecondary">#000000</color>
+
+    <color name="md_background">#FFFFFF</color>
+    <color name="md_onBackground">#222222</color>
+    <color name="md_surface">#FFFFFF</color>
+    <color name="md_onSurface">#222222</color>
+
+    <color name="md_error">#B00020</color>
+    <color name="md_onError">#FFFFFF</color>
+</resources>
