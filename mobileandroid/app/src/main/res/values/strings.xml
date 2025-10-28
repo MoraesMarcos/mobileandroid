@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Aplicacao</string>
+    <string name="users">Usuários</string>
+    <string name="products">Produtos</string>
+</resources>
