@@ -112,3 +112,20 @@ class TaskAdapter(
 | Adicionar Tarefa | Editar Tarefa | Lista Atualizada | Delete |
 |------------------|---------------|------------------|--------|
 | <img width="371" height="780" alt="A3" src="https://github.com/user-attachments/assets/96536fc4-8098-4448-ba35-63c0856a98f4" alt="Adicionar"> | <img width="347" height="756" alt="A3_1" src="https://github.com/user-attachments/assets/c1e76ffa-9544-4e7a-a267-47b1497ebb8d" alt="Editar"> | <img width="356" height="761" alt="A3_3" src="https://github.com/user-attachments/assets/4e6d5158-d838-4e60-824b-6d7325ceb0c8" alt="Lista Atualizada"> | <img width="362" height="767" alt="A3_2" src="https://github.com/user-attachments/assets/049a1a90-2172-412f-9044-32c1c2426166" alt="Removido"> |
+
+
+O repositório está organizado com duas atividades principais, estruturadas da seguinte forma:
+
+### 1. Atividade A2
+
+* **Localização:** Todo o código-fonte e arquivos de projeto da Atividade A2 estão contidos dentro da pasta `/mobileandroid`.
+* **Como Executar:** Para visualizar ou executar este projeto, abra a pasta `/mobileandroid` diretamente no Android Studio.
+
+### 2. Atividade A3
+
+* **Localização:** O projeto da Atividade A3 está localizado na **raiz** deste repositório.
+* **Arquivos Principais:**
+    * `/app`: Contém o módulo principal e o código-fonte da aplicação A3.
+    * `/gradle`, `build.gradle.kts`, `settings.gradle.kts`, etc.: São os arquivos de configuração do Gradle para o projeto A3.
+    * `Atividade-3.zip`: Um arquivo compactado que provavelmente contém recursos, enunciados ou a entrega final da Atividade A3.
+* **Como Executar:** Para visualizar ou executar este projeto, abra a pasta **raiz** (`atividades`) diretamente no Android Studio.
