@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <!-- HOME -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.atividade_a4.ui.HomeFragment"
+        android:label="Início"
+        tools:layout="@layout/fragment_home" />
+
+    <!-- ALUNOS -->
+    <fragment
+        android:id="@+id/alunosFragment"
+        android:name="com.example.atividade_a4.ui.AlunosFragment"
+        android:label="Alunos"
+        tools:layout="@layout/fragment_alunos">
+
+        <action
+            android:id="@+id/action_alunosFragment_to_detalheAlunoFragment"
+            app:destination="@id/detalheAlunoFragment" />
+    </fragment>
+
+    <!-- DETALHE DO ALUNO (Safe Args já existente) -->
+    <fragment
+        android:id="@+id/detalheAlunoFragment"
+        android:name="com.example.atividade_a4.ui.DetalheAlunoFragment"
+        android:label="Detalhes do Aluno"
+        tools:layout="@layout/fragment_detalhe_aluno">
+
+        <argument
+            android:name="nome"
+            app:argType="string" />
+        <argument
+            android:name="faixa"
+            app:argType="string" />
+    </fragment>
+
+    <!-- PERFIL -->
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.atividade_a4.ui.PerfilFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_perfil" />
+
+    <!-- LOGIN -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.atividade_a4.ui.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
+
+    <!-- WELCOME (recebe argumento username) -->
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.atividade_a4.ui.WelcomeFragment"
+        android:label="Bem-vindo"
+        tools:layout="@layout/fragment_welcome">
+
+        <argument
+            android:name="username"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
