@@ -1,4 +1,4 @@
-# 📱 Projeto Android – Atividades A2 e A3  
+# 📱 Projeto Android – Atividades A2, A3, A4 e A5  
 
 ## 👨‍💻 Autor  
 **Marcos Vinícius Vitor de Moraes**  
@@ -8,8 +8,9 @@
 ---
 
 ## 🧩 Descrição Geral  
-Este repositório reúne as **Atividades A2 e A3** desenvolvidas na disciplina de **Desenvolvimento Mobile (Android)**.  
-O objetivo é praticar o uso do **Kotlin**, **RecyclerView/ListAdapter**, **Jetpack Compose** e o padrão **MVVM**, criando aplicações simples e funcionais com gerenciamento dinâmico de listas.
+Este repositório reúne as **Atividades A2, A3, A4 e A5** desenvolvidas na disciplina de **Desenvolvimento Mobile (Android)**.  
+
+O objetivo é praticar o uso do **Kotlin**, **Jetpack Components**, **RecyclerView**, **ViewModel**, **Coroutines** e boas práticas de arquitetura (**MVVM**), criando aplicações Android **funcionais**, **reativas** e **organizadas**.
 
 ---
 
@@ -186,9 +187,10 @@ Criar um aplicativo que utilize **Kotlin Coroutines** para executar **tarefas as
 
 | Tela Inicial | Buscando Dados | Dados Recebidos | Calculando | Cálculo Concluído |
 |---------------|----------------|------------------|-------------|-------------------|
-| <img width="250" src="https://github.com/user-attachments/assets/ecbae83f-4c95-45a6-a4fe-3e86bf2acbcb" /> | <img width="250" src="https://github.com/user-attachments/assets/b014a880-7583-448d-bc6f-20f5a283ad4b" /> | <img width="250" src="https://github.com/user-attachments/assets/c9c6d0a8-d67d-4603-93ab-b6eaa8e856f4" /> | <img width="250" src="https://github.com/user-attachments/assets/1d1971f0-4a43-4a77-a7b2-375ec49e176f" /> | <img width="250" src="https://github.com/user-attachments/assets/863a28ca-436b-4cc4-a558-797733aab4a5" /> |
+| <img width="390" height="802" alt="A5_5" src="https://github.com/user-attachments/assets/e7650eb2-03fc-467b-865f-f0ed4807c7e4" /> | <img width="380" height="822" alt="A5_1" src="https://github.com/user-attachments/assets/8440a552-2fa8-42b9-8ebe-a32715227488" /> | <img width="367" height="817" alt="A5_2" src="https://github.com/user-attachments/assets/9d3ff42f-d544-4c60-95e5-663d60b3592e" /> | <img width="380" height="811" alt="A5_3" src="https://github.com/user-attachments/assets/9d14f4b4-ef44-4129-a517-d92788e6818c" /> | <img width="366" height="813" alt="A5_4" src="https://github.com/user-attachments/assets/62e0f92e-9497-47bc-8b92-27cd9b54ea65" /> |
 
 ---
+
 
 ### 📁 Organização do Repositório  
 
